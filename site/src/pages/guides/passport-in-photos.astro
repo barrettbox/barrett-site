@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AppStoreCta from "../../components/AppStoreCta.astro";
+import { withBase } from "../../lib/site";
+---
+
+<BaseLayout
+  title="Passport in Photos — Passport Pack guide"
+  description="Why a passport copy in Apple Photos is a bad vault — and how Passport Pack keeps scans encrypted off the camera roll."
+>
+  <article class="prose-page">
+    <div class="container prose-page__inner">
+      <p class="eyebrow">Guide</p>
+      <h1 class="display prose-page__title">Your passport isn’t a photo.</h1>
+      <p class="prose-page__lede muted">
+        Snapping a passport page into Apple Photos feels convenient until Recents, iCloud Photos, and
+        every library-access app can see it.
+      </p>
+
+      <section class="prose-block">
+        <h2>What goes wrong in Photos</h2>
+        <p>
+          Photos is built for everyday pictures: sync, search, shared albums, and third-party apps
+          that request full library access. A passport scan sitting next to screenshots inherits that
+          model. It is easy to forward, easy to leave unlocked on a shared device, and easy to forget
+          when you wipe Recents.
+        </p>
+        <ul>
+          <li>iCloud Photos can replicate the image across devices you did not intend.</li>
+          <li>Apps with Photos permission can read identity documents without a vault unlock.</li>
+          <li>There is no master-password gate on a JPEG in the camera roll.</li>
+        </ul>
+      </section>
+
+      <section class="prose-block">
+        <h2>What a vault should do instead</h2>
+        <p>
+          Passport Pack scans the document into an AES-GCM encrypted store under your master password.
+          The image is not written to Photos. Face ID can unlock the vault for convenience, but it is
+          not the content key — lose the master password and Passport Pack cannot recover the archive.
+        </p>
+      </section>
+
+      <section class="prose-block">
+        <h2>Practical next step</h2>
+        <p>
+          If you already have a passport copy in Photos, scan a fresh copy into Passport Pack, confirm
+          the fields, then delete the Photos original (and Recently Deleted). Free Passport Pack covers
+          three documents on Me so you can prove the workflow before upgrading.
+        </p>
+      </section>
+
+      <div class="prose-cta">
+        <AppStoreCta />
+        <a class="prose-link" href={withBase("/security")}>How encryption works →</a>
+        <a class="prose-link" href={withBase("/guides/family-travel-documents")}>Family travel docs guide →</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

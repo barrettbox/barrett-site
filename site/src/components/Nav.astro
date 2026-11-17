@@ -1,0 +1,147 @@
+---
+import { withBase } from "../lib/site";
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "") || "";
+const pathAfterBase =
+  base && pathname.startsWith(base) ? pathname.slice(base.length) || "/" : pathname;
+const current = pathAfterBase.replace(/\/$/, "") || "/";
+
+const links = [
+  { href: withBase("/"), label: "Home", active: current === "/" },
+  { href: withBase("/security"), label: "Architecture", active: current === "/security" },
+  {
+    href: withBase("/guides/passport-in-photos"),
+    label: "Guides",
+    active: current.startsWith("/guides"),
+  },
+  { href: withBase("/privacy"), label: "Privacy", active: current === "/privacy" },
+  { href: withBase("/support"), label: "Support", active: current === "/support" },
+  { href: withBase("/compare"), label: "Compare", stub: true },
+];
+---
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href={withBase("/")}>
+      <svg class="nav__mark" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M6.5 3.75h11a1.75 1.75 0 0 1 1.75 1.75v13a1.75 1.75 0 0 1-1.75 1.75h-11A1.75 1.75 0 0 1 4.75 18.5v-13A1.75 1.75 0 0 1 6.5 3.75Zm1.25 2.5v11.5h8.5V6.25h-8.5Zm2 2h4.5v1.25h-4.5V8.25Zm0 3h4.5V12.5h-4.5v-1.25Z"
+        ></path>
+      </svg>
+      <span>Passport Pack</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      {
+        links.map((link) =>
+          link.stub ? (
+            <span class="nav__link nav__link--stub" title="Coming soon" aria-disabled="true">
+              {link.label}
+              <span class="nav__soon">Soon</span>
+            </span>
+          ) : (
+            <a
+              class:list={["nav__link", { "nav__link--active": link.active }]}
+              href={link.href}
+              aria-current={link.active ? "page" : undefined}
+            >
+              {link.label}
+            </a>
+          ),
+        )
+      }
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(14px);
+    background: rgba(16, 16, 14, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.75rem;
+  }
+
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--paper);
+  }
+
+  .nav__mark {
+    width: 1.15rem;
+    height: 1.15rem;
+    color: var(--brass);
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav__link {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--paper-muted);
+    letter-spacing: 0.01em;
+    transition: color 160ms ease;
+  }
+
+  .nav__link:hover {
+    color: var(--paper);
+  }
+
+  .nav__link--active {
+    color: var(--brass-light);
+  }
+
+  .nav__link--stub {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--muted);
+    opacity: 0.72;
+    cursor: default;
+  }
+
+  .nav__soon {
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass);
+    border: 1px solid rgba(199, 167, 101, 0.28);
+    padding: 0.1rem 0.35rem;
+  }
+
+  @media (max-width: 640px) {
+    .nav__inner {
+      align-items: flex-start;
+      padding-block: 0.85rem;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .nav__links {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+</style>
