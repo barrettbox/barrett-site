@@ -1,0 +1,67 @@
+---
+import { SUPPORT_EMAIL, withBase } from "../lib/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand-block">
+      <p class="footer__brand">Passport Pack</p>
+      <p class="footer__note muted">
+        Encrypted family travel IDs on your iPhone. Never saved to Photos.
+      </p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      <a href={withBase("/security")}>Architecture</a>
+      <a href={withBase("/guides/passport-in-photos")}>Guides</a>
+      <a href={withBase("/privacy")}>Privacy</a>
+      <a href={withBase("/support")}>Support</a>
+      <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+    </nav>
+    <p class="footer__legal muted">© {year} Passport Pack. On-device vault — no account required.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: auto;
+    border-top: 1px solid var(--line);
+    padding: 2rem 0 2.5rem;
+  }
+
+  .footer__inner {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .footer__brand {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--paper);
+  }
+
+  .footer__note {
+    margin: 0.35rem 0 0;
+    font-size: 0.875rem;
+    max-width: 36rem;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--paper-muted);
+  }
+
+  .footer__links a:hover {
+    color: var(--brass-light);
+  }
+
+  .footer__legal {
+    margin: 0;
+    font-size: 0.75rem;
+  }
+</style>

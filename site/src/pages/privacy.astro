@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AppStoreCta from "../components/AppStoreCta.astro";
+import { SUPPORT_EMAIL, withBase } from "../lib/site";
+---
+
+<BaseLayout
+  title="Privacy — Passport Pack"
+  description="Passport Pack privacy: no account, no ads, on-device encryption. Contact support@passportpack.app."
+>
+  <article class="prose-page">
+    <div class="container prose-page__inner">
+      <p class="eyebrow">Privacy</p>
+      <h1 class="display prose-page__title">No account. No ads. On your device.</h1>
+      <p class="prose-page__lede muted">
+        Passport Pack is designed so identity documents stay under your master password on the iPhone
+        you hold. We do not run a Passport Pack account service for the vault.
+      </p>
+
+      <section class="prose-block">
+        <h2>What Passport Pack collects</h2>
+        <p>
+          Launch intent: <strong>Data Not Collected</strong> for App Store Privacy Nutrition Labels,
+          if that remains accurate for the shipping build. Document images and extracted fields stay
+          in the encrypted on-device vault. Passport Pack does not send passport scans to a cloud
+          service for OCR or storage.
+        </p>
+      </section>
+
+      <section class="prose-block">
+        <h2>What stays local</h2>
+        <ul>
+          <li>Scanned document bytes (AES-GCM)</li>
+          <li>Vault index and confirmed fields</li>
+          <li>Master-password-wrapped vault key in Keychain (ThisDeviceOnly)</li>
+          <li>Optional Face ID unlock of the local key</li>
+        </ul>
+      </section>
+
+      <section class="prose-block">
+        <h2>What we do not claim at launch</h2>
+        <p>
+          Passport Pack launch marketing and paid unlock do <strong>not</strong> include iCloud backup
+          or CloudKit sync. If a future build adds client-encrypted backup, this page and the App
+          Store privacy labels will be updated before that capability is advertised.
+        </p>
+      </section>
+
+      <section class="prose-block">
+        <h2>Support</h2>
+        <p>
+          Questions about the vault or this privacy policy:
+        </p>
+        <p>
+          <a class="prose-link" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+          · <a class="prose-link" href={withBase("/support")}>Support page</a>
+        </p>
+        <p class="muted small">
+          Create the mailbox (and SPF/DKIM) before soft launch — or change
+          <code>SUPPORT_EMAIL</code> in <code>site/src/lib/site.ts</code>.
+        </p>
+      </section>
+
+      <div class="prose-cta">
+        <AppStoreCta />
+        <a class="prose-link" href={withBase("/security")}>Read the architecture page →</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

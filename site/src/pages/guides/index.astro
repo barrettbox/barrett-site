@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/site";
+
+const guides = [
+  {
+    href: withBase("/guides/passport-in-photos"),
+    title: "Why your passport shouldn’t live in Photos",
+    lede: "Recents, iCloud Photos, and library-access apps are the wrong place for a travel ID copy.",
+  },
+  {
+    href: withBase("/guides/family-travel-documents"),
+    title: "Family travel documents on one iPhone",
+    lede: "Keep passports and licenses for the whole family under one master password — without dumping them into the camera roll.",
+  },
+];
+---
+
+<BaseLayout
+  title="Guides — Passport Pack"
+  description="Problem guides for passport copies and family travel documents on iPhone."
+>
+  <section class="prose-page">
+    <div class="container prose-page__inner">
+      <p class="eyebrow">Guides</p>
+      <h1 class="display prose-page__title">Problem guides</h1>
+      <p class="prose-page__lede muted">
+        Short reads for people searching how to store passport copies and family IDs on iPhone —
+        without treating Photos as a vault.
+      </p>
+      <div class="guide-list">
+        {
+          guides.map((guide) => (
+            <a class="guide-card" href={guide.href}>
+              <h2 class="guide-card__title">{guide.title}</h2>
+              <p class="guide-card__lede muted">{guide.lede}</p>
+              <span class="guide-card__more">Read →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .guide-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2.25rem;
+  }
+
+  .guide-card {
+    display: grid;
+    gap: 0.55rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .guide-card__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: var(--paper);
+  }
+
+  .guide-card:hover .guide-card__title {
+    color: var(--brass-light);
+  }
+
+  .guide-card__lede {
+    margin: 0;
+    font-size: 0.975rem;
+    max-width: 40rem;
+  }
+
+  .guide-card__more {
+    font-size: 0.875rem;
+    color: var(--brass-light);
+  }
+</style>

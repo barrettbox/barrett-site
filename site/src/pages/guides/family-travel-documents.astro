@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AppStoreCta from "../../components/AppStoreCta.astro";
+import { withBase } from "../../lib/site";
+---
+
+<BaseLayout
+  title="Family travel documents — Passport Pack guide"
+  description="Keep passports, licenses, and visas for the whole family encrypted on one iPhone — without dumping them into Photos."
+>
+  <article class="prose-page">
+    <div class="container prose-page__inner">
+      <p class="eyebrow">Guide</p>
+      <h1 class="display prose-page__title">Family travel documents on one iPhone.</h1>
+      <p class="prose-page__lede muted">
+        Packing week is when folders of passport photos appear in Recents. Passport Pack is built for
+        the family packing list — under one master password, not a shared album.
+      </p>
+
+      <section class="prose-block">
+        <h2>The packing-week failure mode</h2>
+        <p>
+          Parents often photograph every passport and license “just in case,” then leave those images
+          in Photos for months. Shared devices, babysitter handoffs, and airline form fills all pull
+          from the same unencrypted library.
+        </p>
+      </section>
+
+      <section class="prose-block">
+        <h2>What Passport Pack packages for families</h2>
+        <ul>
+          <li>
+            <strong>Profiles</strong> — paid unlocks family profiles so each person’s docs stay
+            organized under the same vault password.
+          </li>
+          <li>
+            <strong>Unlimited documents</strong> — free is capped at three docs / Me; paid removes the
+            cap when the archive grows.
+          </li>
+          <li>
+            <strong>Expiry reminders</strong> — paid expiry nudges for passports and visas without
+            relying on a calendar screenshot in Photos.
+          </li>
+        </ul>
+        <p>
+          Launch paid features intentionally exclude iCloud / CloudKit sync. The vault stays on this
+          iPhone until a paid-sync story is ready.
+        </p>
+      </section>
+
+      <section class="prose-block">
+        <h2>A simple family workflow</h2>
+        <ol>
+          <li>Create the vault with a master password you will not forget (or store offline).</li>
+          <li>Scan each passport / license into Passport Pack — confirm OCR fields on device.</li>
+          <li>Upgrade when you need a second person or a fourth document.</li>
+          <li>Delete leftover Photos copies from Recents and Recently Deleted.</li>
+        </ol>
+      </section>
+
+      <div class="prose-cta">
+        <AppStoreCta label="Get Passport Pack" />
+        <a class="prose-link" href={withBase("/guides/passport-in-photos")}>Passport in Photos guide →</a>
+        <a class="prose-link" href={withBase("/privacy")}>Privacy &amp; support →</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

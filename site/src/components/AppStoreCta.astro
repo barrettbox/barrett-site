@@ -1,0 +1,47 @@
+---
+import { APP_STORE_URL } from "../lib/site";
+
+interface Props {
+  label?: string;
+  class?: string;
+}
+
+const { label = "Download on the App Store", class: className } = Astro.props;
+const isPlaceholder = APP_STORE_URL === "#" || APP_STORE_URL.trim() === "";
+---
+
+<a
+  class:list={["app-store-cta", className]}
+  href={isPlaceholder ? "#" : APP_STORE_URL}
+  rel={isPlaceholder ? undefined : "noopener noreferrer"}
+  aria-disabled={isPlaceholder ? "true" : undefined}
+  title={isPlaceholder ? "App Store URL placeholder — set APP_STORE_URL in site/src/lib/site.ts" : undefined}
+>
+  {label}
+</a>
+
+<style>
+  .app-store-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.9rem 1.55rem;
+    background: var(--brass);
+    color: #18150f;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 160ms ease, transform 160ms ease;
+    animation: brass-breathe 3.6s ease-in-out infinite;
+  }
+
+  .app-store-cta:hover {
+    background: var(--brass-light);
+  }
+
+  .app-store-cta:focus-visible {
+    outline: 2px solid var(--brass-light);
+    outline-offset: 3px;
+  }
+</style>

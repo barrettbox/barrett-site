@@ -1,0 +1,223 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AppStoreCta from "../components/AppStoreCta.astro";
+import { withBase } from "../lib/site";
+
+
+const pillars = [
+  {
+    title: "Master password",
+    body: "Your vault key is derived and wrapped with your master password (PBKDF2) and stored in the iOS Keychain (ThisDeviceOnly). Passport Pack has no account and no recovery server. Lose the password and the vault is gone.",
+  },
+  {
+    title: "AES-GCM on device",
+    body: "Document bytes and the vault index are encrypted on your iPhone with AES-GCM before they rest on disk. Passport Pack is local-first — not a cloud locker that reads your files.",
+  },
+  {
+    title: "Face ID ≠ content key",
+    body: "Face ID can unlock the locally stored key for convenience. It never replaces your master password and is not a backup of your vault key. Biometrics only unlock a key that already exists on this device.",
+  },
+];
+---
+
+<BaseLayout
+  title="Architecture — Passport Pack"
+  description="Passport Pack threat model: master password, on-device AES-GCM, Face ID is not the content key, lost password means no recovery. No CloudKit claim for launch."
+>
+  <section class="security">
+    <div class="container">
+      <header class="security__intro">
+        <p class="eyebrow">Architecture / threat model</p>
+        <h1 class="display security__title">Security you can read.</h1>
+        <p class="security__lede muted">
+          Passport Pack is built for passports and family IDs that should never mingle with camera
+          rolls. Encryption happens on the device you hold. Launch messaging does not claim iCloud
+          backup or CloudKit sync.
+        </p>
+      </header>
+
+      <div class="pillars" role="list">
+        {
+          pillars.map((pillar) => (
+            <article class="pillar" role="listitem">
+              <h2 class="pillar__title">{pillar.title}</h2>
+              <p class="pillar__body muted">{pillar.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <section class="honesty" aria-labelledby="honesty-title">
+        <h2 id="honesty-title" class="display honesty__title">What we claim — and what we don’t</h2>
+        <ul class="honesty__list">
+          <li>Scans are intended for the vault only — never written into Photos.</li>
+          <li>No Passport Pack account means no remote recovery of a forgotten master password.</li>
+          <li>Face ID unlocks a local key; it is not a backup of your password.</li>
+          <li>
+            Field extraction (Vision OCR, MRZ, barcode) runs on device. Passport Pack does not send
+            document images to a cloud OCR service.
+          </li>
+          <li>
+            <strong>No CloudKit / iCloud backup claim for launch.</strong> Paid unlocks unlimited
+            documents, family profiles, and expiry reminders — not cloud sync.
+          </li>
+          <li>
+            An unlocked device is still trusted. Passport Pack does not claim “memory encryption” for
+            keys held while the vault is open.
+          </li>
+        </ul>
+      </section>
+
+      <section class="photos" aria-labelledby="photos-title">
+        <h2 id="photos-title" class="display honesty__title">Photos vs the vault</h2>
+        <p class="honesty__body muted">
+          Apple Photos is a library for everyday pictures. Passport Pack is a separate encrypted store
+          for identity documents. When you scan into the vault, Passport Pack does <strong>not</strong> write
+          that image into Photos — not as a hidden album, not as a temporary share dump. Temporary
+          share flows warn that the receiving app may keep its own copy; the vault itself stays out
+          of the camera roll.
+        </p>
+      </section>
+
+      <div class="security__cta">
+        <AppStoreCta />
+        <a class="security__guide" href={withBase("/guides/passport-in-photos")}>Read the Photos guide →</a>
+      </div>
+
+      <p class="security__foot muted">
+        This page describes the launch product architecture. It intentionally omits CloudKit backup
+        claims that are withheld until a paid-sync story ships.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .security {
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .security__intro {
+    max-width: 40rem;
+    animation: rise-in 0.8s var(--ease-out) forwards;
+  }
+
+  .security__title {
+    margin: 0.75rem 0 0;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+  }
+
+  .security__lede {
+    margin: 1.1rem 0 0;
+    font-size: 1.05rem;
+    max-width: 38rem;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem 1.75rem;
+    margin-top: 2.75rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .pillar {
+    animation: rise-in 0.85s var(--ease-out) forwards;
+  }
+
+  .pillar:nth-child(1) {
+    animation-delay: 0.08s;
+  }
+  .pillar:nth-child(2) {
+    animation-delay: 0.16s;
+  }
+  .pillar:nth-child(3) {
+    animation-delay: 0.24s;
+  }
+
+  .pillar__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--brass-light);
+  }
+
+  .pillar__body {
+    margin: 0.7rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .honesty,
+  .photos {
+    margin-top: 3rem;
+    padding: 2rem 0 0;
+    border-top: 1px solid var(--line);
+    max-width: 42rem;
+    animation: rise-in 0.9s var(--ease-out) 0.28s forwards;
+  }
+
+  .honesty__title {
+    margin: 0;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+  }
+
+  .honesty__body {
+    margin: 1rem 0 0;
+    font-size: 1rem;
+  }
+
+  .honesty__body strong,
+  .honesty__list strong {
+    color: var(--paper);
+    font-weight: 600;
+  }
+
+  .honesty__list {
+    margin: 1.15rem 0 0;
+    padding-left: 1.15rem;
+    color: var(--paper-muted);
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .honesty__list li::marker {
+    color: var(--brass);
+  }
+
+  .security__cta {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .security__guide {
+    font-size: 0.9375rem;
+    color: var(--brass-light);
+  }
+
+  .security__guide:hover {
+    color: var(--paper);
+  }
+
+  .security__foot {
+    margin: 2.5rem 0 0;
+    font-size: 0.8125rem;
+    max-width: 40rem;
+  }
+
+  @media (max-width: 860px) {
+    .security {
+      padding-top: 2.5rem;
+    }
+
+    .pillars {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

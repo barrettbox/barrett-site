@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Barrettbox — apps by Andrew Barrett</title>
+    <meta
+      name="description"
+      content="iOS apps by Andrew Barrett: Passport Pack and more. Privacy and support links for App Store listings."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;650;700&family=Syne:wght@700;750&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <a class="brand" href="./">Barrett<span>box</span></a>
+        <nav class="nav" aria-label="Primary">
+          <a href="./apps/passport-pack/">Passport Pack</a>
+          <a href="mailto:abarrett879@gmail.com">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Apps by Andrew&nbsp;Barrett</h1>
+        <p>
+          Small iOS utilities with honest architecture. One place for store
+          links, privacy policies, and support.
+        </p>
+      </section>
+
+      <section class="apps" aria-label="Apps">
+        <a class="app-row" href="./apps/passport-pack/">
+          <div>
+            <h2>Passport Pack</h2>
+            <p>Encrypted on-device vault for passports, licenses, visas, and travel IDs.</p>
+          </div>
+          <span class="go">Open →</span>
+        </a>
+        <a class="app-row" href="./apps/warmups/">
+          <div>
+            <h2>Warmups</h2>
+            <p>iOS utility from the Barrettbox shelf.</p>
+          </div>
+          <span class="go">Open →</span>
+        </a>
+        <a class="app-row" href="./apps/open-now/">
+          <div>
+            <h2>Open Now?</h2>
+            <p>Quick open/closed checks when you’re out.</p>
+          </div>
+          <span class="go">Open →</span>
+        </a>
+        <a class="app-row" href="./apps/macular/">
+          <div>
+            <h2>Macular</h2>
+            <p>macOS app from the Barrettbox shelf.</p>
+          </div>
+          <span class="go">Open →</span>
+        </a>
+      </section>
+
+      <p class="meta">Hosted on GitHub Pages for now. Custom domain later.</p>
+
+      <footer class="site-footer">
+        © <span id="y"></span> Andrew Barrett ·
+        <a href="https://github.com/barrettbox">github.com/barrettbox</a>
+      </footer>
+    </div>
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

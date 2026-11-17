@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AppStoreCta from "../components/AppStoreCta.astro";
+import { SUPPORT_EMAIL, withBase } from "../lib/site";
+---
+
+<BaseLayout
+  title="Support — Passport Pack"
+  description="Contact Passport Pack support. On-device vault — no account required."
+>
+  <article class="prose-page">
+    <div class="container prose-page__inner">
+      <p class="eyebrow">Support</p>
+      <h1 class="display prose-page__title">We’re here for vault questions.</h1>
+      <p class="prose-page__lede muted">
+        Passport Pack has no account login and no remote recovery. Email us for product questions,
+        purchase restore help, or privacy requests.
+      </p>
+
+      <section class="prose-block">
+        <h2>Email</h2>
+        <p>
+          <a class="prose-link" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+        </p>
+        <p class="muted small">
+          Mailbox is a product-domain placeholder until Andrew creates DNS + inbox (or updates
+          <code>SUPPORT_EMAIL</code>).
+        </p>
+      </section>
+
+      <section class="prose-block">
+        <h2>Before you write</h2>
+        <ul>
+          <li>
+            <strong>Forgotten master password</strong> — there is no reset. This is intentional; see
+            the <a class="prose-link" href={withBase("/security")}>architecture page</a>.
+          </li>
+          <li>
+            <strong>Restore Purchases</strong> — use Restore on the paywall or in Settings (signed in
+            with the same Apple ID).
+          </li>
+          <li>
+            <strong>Privacy</strong> — see the <a class="prose-link" href={withBase("/privacy")}>privacy policy</a>.
+          </li>
+        </ul>
+      </section>
+
+      <div class="prose-cta">
+        <AppStoreCta label="Get Passport Pack" />
+        <a class="prose-link" href={withBase("/guides")}>Read the guides →</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
